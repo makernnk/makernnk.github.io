@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>csz</title>
+    <style>
+        body{width:550px;margin:0 auto;padding-top: 150px}
+        h1{font-size:3em;text-align:center;}
+        p{font-size:1.5em;}
+        span{color:blue;font-size:2em;}
+        button{font-size:2em;}
+    </style>
+</head>
+<body>
+
+    <p>
+        从0到1000，请你写下一个数字!<br>
+        电脑最多10次，就可猜中！
+    </p>
+    <span id="times">第1次</span>
+    <h1 id="num">500</h1>
+    <button id="big">大了</button>
+    <button id="small">小了</button>
+    <button id="more">重开</button>>
+    <button id="auto">自动</button>>
+    <br>
+    <span id="guess"></span>
+    <script>
+        var guess=prompt("从0-1000选一个数: ");
+        guess=parseInt(guess);
+        if(guess <0 || guess > 1000 || isNaN(guess)){
+            alert("数字格式错误!!! ")
+            location.reload();
+        }
+        var left = 0;
+        var right = 1000;
+        var num = 500;
+        var index = 1;
+
+        document.querySelector("span#guess").textContent = "你选的数字是: " + guess;
+
+        document.querySelector("button#small").onclick = function (){
+            small();
+        }
+
+        document.querySelector("button#big").onclick = function (){
+            big();
+        }
+
+        document.querySelector("button#more").onclick = function(){
+            location.reload();
+        }
+
+        document.querySelector("button#auto").onclick = function(){
+            num = 500 ;
+            left = 0 ;
+            right =1000 ;
+            index =1 ;
+            document.querySelector("span#times").textContent = "第" + index + "次" ;
+            document.querySelector("h1#num").textContent = num ;
+            setInterval(auto,1000);
+        }
+
+        function big(){
+            right = Math.floor((left+right)/2);
+            num = Math.floor((right+left)/2);
+            document.querySelector("span#times").textContent = "第" + index++ +"次";
+            document.querySelector("h1#num").textContent = num;
+            youAreCheating();
+            okNum();
+        }
+
+        function small(){
+            left = num+1;
+            num = Math.floor((right+left)/2);
+            document.querySelector("span#times").textContent = "第" + index++ +"次";
+            document.querySelector("h1#num").textContent = num;
+            youAreCheating();
+            okNum();
+        }
+
+
+        function youAreCheating() {
+            if (index>10){
+                document.querySelector("h1#num").textContent = "??????";
+                document.querySelector("button#big").onclick = null;
+                document.querySelector("button#small").onclick = null;
+            }
+        }
+
+        function okNum(){
+            if (guess === num){
+                document.querySelector("span#times").textContent = "第" + index + "次" + "可喜可贺,计算机终于猜对了!";
+                document.querySelector("button#big").onclick = null;
+                document.querySelector("button#small").onclick = null;
+            }
+        }
+
+        function auto(){
+            if (index>10){
+                return;
+            }
+            if (num < guess){
+                small();
+            }
+            if (num > guess){
+                big();
+            }
+        }
+    </script>
+</body>
+</html>

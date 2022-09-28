@@ -38,12 +38,10 @@
         var body=document.querySelector("body");
         setInterval(PCR,100);
         function PCR(){
-            for(var i = 0;i < 1000;i++){
                 var r = Math.floor(Math.random() * 256);
                 var g = Math.floor(Math.random() * 256);
                 var b = Math.floor(Math.random() * 256);
                 body.style.backgroundColor = "rgb(" + r + "," + g + "," + b + ")";
-            }
         }
     </script>
     <audio autoplay="autoplay" controls="controls" loop="loop" src="djy.flac"></audio>

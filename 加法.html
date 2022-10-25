@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>add</title>
+    <style>
+        body{
+            font-size:30px;
+        }
+        input{
+            font-size: 1em;
+        }
+        input[button]{
+            margin-right: 1em;
+        }
+    </style>
+</head>
+<body>
+<h1 id="h1">oh year</h1>
+    <div id="question">
+        <input id="addNum1", type="text", value="0">
+        <span id="add">+</span>
+        <input id="addNum2", type="text", value="0">
+        <span id="addd">=</span>
+        <input id="sum", type="text", value="" , readonly>
+    </div>
+    <div id = 'answer'>
+        A. <input type="button" value="20" id = "answerA">
+        B. <input type="button" value="21" id = "answerB">
+        C. <input type="button" value="22" id = "answerC">
+        D. <input type="button" value="23" id = "answerD">
+    </div>
+    <script>
+        document.querySelector("input#answerA").value = Math.floor(Math.random() * 20);
+        document.querySelector("input#answerB").value = Math.floor(Math.random() * 20);
+        document.querySelector("input#answerC").value = Math.floor(Math.random() * 20);
+        document.querySelector("input#answerD").value = Math.floor(Math.random() * 20);
+        function addsum(){
+            var num1 = document.querySelector("input#addNum1").value;
+            var num2 = document.querySelector("input#addNum2").value;
+            document.querySelector("input#sum").value = (parseInt(num1)+parseInt(num2));
+        }
+        setInterval(addsum,500);
+    </script>
+</body>
+</html>

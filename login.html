@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>登录</title>
+    <style>
+        div {
+            display:inline-block;
+            padding: 255px 1px;
+        }
+        body {
+            background:#008B8B;
+            text-align: center;
+        }
+        h3 {
+            font-family: "微软雅黑",serif;
+            font-size: 40px;
+            color:black;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <h3> 登录 </h3>
+        <p>
+            <label for="username"> 账&nbsp&nbsp&nbsp户 :  </label>
+            <input type="text" name="username" id="username">
+        </p>
+
+        <p>
+            <label for="password"> 密&nbsp&nbsp&nbsp码 :  </label>
+            <input type="text" name="password" id="password">
+        </p>
+
+        <p>
+            <input type="submit" value=" 登录 " id="login">
+        </p>
+
+        <p  id="tips"></p>
+
+        <p> 没有账号? 请选择 <a href="index.html"> 注册 </a></p>
+    </div>
+
+<script>
+    document.getElementById("login").onclick = function (){
+        var username = document.getElementById("username").value;
+        var password = document.getElementById("password").value;
+        var regName = /^\S{6,}$/;
+        var regWord = /^[0-9a-zA-Z]{6,}$/;
+        if (!regName.test(username)|| !regWord.test(password)){
+            document.getElementById("tips").style.color = "red";
+            document.getElementById("tips").textContent = "账户或密码不完整(都需6个以上的字符) ! ";
+        }
+        else if (password === 114514 && username === "jokernnk"){
+            document.getElementById("tips").style.color = "blue";
+            document.getElementById("tips").textContent = "登录成功 ! ";
+            setInterval(go, 1000);
+        }
+        else{
+            document.getElementById("tips").style.color = "red";
+            document.getElementById("tips").textContent = "账号或密码错误! ! ";
+        }
+
+        var x = 3;
+        function go() {
+            document.getElementById("countdown").textContent = x + "后跳转到集合页面 ! ";
+            x--;
+            if (x === 0){
+                location.href='https://makernnk.github.io/集合.html';
+            }
+        }
+    }
+</script>
+</body>
+</html>

@@ -13,6 +13,10 @@
       padding: 5px 10px;
       border: 1px solid blue;
     }
+    input{
+      font-size: 20px;
+      font-family: "微软雅黑",serif ;
+    }
   </style>
 </head>
 <body>
@@ -83,15 +87,30 @@
     <td></td>
   </tr>
 </table>
+<br>
+<input id="changeColor" type="button" value="改变颜色">
+<input id="zero" type="button" value="重置颜色">
 <script type="text/javascript">
   var element = document.querySelectorAll('td');
   var k = 0;
   for(var i=1;i<10;i++){
     for(var j=1;j<=i;j++){
-      var s = j + "X" + i + "=" + i*j + " ";
+      var s = j + " x " + i + " = " + i*j;
       element[k++].textContent = s;
     }
   }
+
+  var body=document.querySelector("body");
+  document.getElementById("changeColor").onclick = function (){
+    var r = Math.floor(Math.random() * 256);
+    var g = Math.floor(Math.random() * 256);
+    var b = Math.floor(Math.random() * 256);
+    body.style.backgroundColor = "rgb(" + r + "," + g + "," + b + ")";
+  }
+  document.getElementById("zero").onclick = function (){
+    body.style.backgroundColor = "rgb(" + 255 + "," + 255 + "," + 255 + ")";
+  }
+
 </script>
 </body>
 </html>

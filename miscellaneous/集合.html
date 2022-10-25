@@ -4,39 +4,66 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <style>
-        hr#onehr{
-            height: 12px;
-            background-color: blue;
+        body {
+            background-image: url("https://makernnk.github.io/image/cxk.png");
+            text-align: center;
+            background-size: 100% 100%
         }
-        button{
-            background-color: greenyellow;
-            padding: 10px;
-            cursor: pointer;
+        table {
+            background-color: black;
+            color: white;
+            border-collapse:collapse;
+            width: 600px;
         }
-        td{
+        td {
+            width: 150px;
             font-size: 25px;
-            color: red;
             padding: 5px 10px;
-            border: 1px solid blue;
+            border: 1px solid greenyellow;
+        }
+        a {
+            color: aqua;
+            text-decoration: none;
+            target:"_blank"
+        }
+        div {
+            display:inline-block;
+            padding: 190px 1px;
         }
     </style>
 </head>
 <body>
-<hr id="onehr">
-<a href="https://makernnk.github.io/九九乘法表.html" target="_blank"> <button>九九乘法表</button></a>
-<a href="https://makernnk.github.io/猜数字.html" target="_blank"> <button>猜数字</button></a>
-<a href="https://blog.jixiaob.cn/" target="_blank"><button>oh♂year</button></a>
+<div>
+    <h2> 作业表 </h2>
+    <table>
+    <tr>
+        <td><a href="https://makernnk.github.io/miscellaneous/九九乘法表.html"> 九九乘法表 </a> </td>
+        <td><a href="https://makernnk.github.io/miscellaneous/猜数字.html"> 猜数字</a> </td>
+        <td><a href="https://makernnk.github.io/miscellaneous/加法.html"> 加法</a> </td>
+        <td>4</td>
+    </tr>
+    <tr>
+        <td>5</td>
+        <td>6</td>
+        <td>7</td>
+        <td>8</td>
+    </tr>
+    <tr>
+        <td>9</td>
+        <td>10</td>
+        <td>11</td>
+        <td>12</td>
+    </tr>
+    <tr>
+        <td>13</td>
+        <td>14</td>
+        <td>15</td>
+        <td><a href="https://blog.jixiaob.cn/" target="_blank">oh♂year</a></td>
+    </tr>
+    </table>
+</div>
 <script>
-    alert("are you ready?");
-    alert("let's go!")
-    var body=document.querySelector("body");
-    setInterval(PCR,1000);
-    function PCR(){
-        var r = Math.floor(Math.random() * 256);
-        var g = Math.floor(Math.random() * 256);
-        var b = Math.floor(Math.random() * 256);
-        body.style.backgroundColor = "rgb(" + r + "," + g + "," + b + ")";
-    }
+
 </script>
 </body>
 </html>

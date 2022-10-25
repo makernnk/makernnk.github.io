@@ -2,49 +2,90 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>登录</title>
     <style>
-        /*p#header{*/
-        /*    font-size: 1px;*/
-        /*    padding-left: 5px;*/
-        /*}*/
-        hr#onehr{
-            height: 12px;
-            background-color: blue;
+        div {
+            display:inline-block;
+            padding: 180px 1px;
         }
-        button{
-            background-color: greenyellow;
-            padding: 10px;
-            cursor: pointer;
+        body {
+            background:#008B8B;
+            text-align: center;
         }
-        td{
-            font-size: 25px;
-            color: red;
-            padding: 5px 10px;
-            border: 1px solid blue;
+        h3 {
+            font-family: "微软雅黑",serif;
+            font-size: 40px;
+            color:black;
+        }
+        p#ps {
+            color: greenyellow;
         }
     </style>
 </head>
 <body>
-<!--    <p id="header">-->
-<!--    烟锁池塘柳, 桃燃锦江堤-->
-<!--    </p>-->
-    <hr id="onehr">
-    <a href="https://makernnk.github.io/九九乘法表.html" target="_blank"> <button>九九乘法表</button></a>
-    <a href="https://makernnk.github.io/猜数字.html" target="_blank"> <button>猜数字</button></a>
-    <a href="https://blog.jixiaob.cn/" target="_blank"><button>oh♂year</button></a>
-    <script>
-        alert("are you ready?");
-        alert("let's go!")
-        var body=document.querySelector("body");
-        setInterval(PCR,100);
-        function PCR(){
-                var r = Math.floor(Math.random() * 256);
-                var g = Math.floor(Math.random() * 256);
-                var b = Math.floor(Math.random() * 256);
-                body.style.backgroundColor = "rgb(" + r + "," + g + "," + b + ")";
+    <div>
+        <p id="countdown"></p>
+
+        <h3> 注册 </h3>
+        <p>
+            <label for="username"> 账&nbsp&nbsp&nbsp户 :  </label>
+            <input type="text" name="username" id="username">
+        </p>
+
+        <p>
+            <label for="password"> 密&nbsp&nbsp&nbsp码 :  </label>
+            <input type="text" name="password" id="password">
+        </p>
+
+        <p>
+            <label for="okPassword">确认密码 : </label>
+            <input type="text" name="okPassword" id="okPassword">
+        </p>
+
+        <p>
+            <input type="submit" value=" 立即注册 " id="register">
+        </p>
+
+        <p  id="tips"></p>
+
+        <p> 已有账号? 请选择 <a href="login.html"> 登录 </a></p>
+
+    </div>
+
+    <p id="ps"> PS: 根本没有存进去, 都是假的</p>
+
+<script>
+    document.getElementById("register").onclick = function (){
+        var username = document.getElementById("username").value;
+        var password = document.getElementById("password").value;
+        var okpassword = document.getElementById("okPassword").value;
+        var regName = /^\S{6,}$/;
+        var regWord = /^[0-9a-zA-Z]{6,}$/;
+        if (!regName.test(username)|| !regWord.test(password)){
+            document.getElementById("tips").style.color = "red";
+            document.getElementById("tips").textContent = "账户或密码不完整(都需6个以上的字符) ! ";
         }
-    </script>
-    <audio autoplay="autoplay" controls="controls" loop="loop" src="djy.flac"></audio>
+
+        else if (password !== okpassword){
+            document.getElementById("tips").style.color = "red";
+            document.getElementById("tips").textContent = "两次密码不一致 ! ";
+        }
+
+        else if (password === okpassword){
+            document.getElementById("tips").style.color = "blue";
+            document.getElementById("tips").textContent = "注册成功 ! ";
+            setInterval(go, 1000);
+        }
+
+        var x = 3;
+        function go() {
+            document.getElementById("countdown").textContent = x + "后跳转到登录页面 ! ";
+            x--;
+            if (x === 0){
+                location.href='login.html';
+            }
+        }
+    }
+</script>
 </body>
 </html>

@@ -6,7 +6,7 @@
     <style>
         div {
             display:inline-block;
-            padding: 255px 1px;
+            padding-top: 160px;
         }
         body {
             background:#008B8B;
@@ -21,6 +21,8 @@
 </head>
 <body>
     <div>
+        <p id="countdown"></p>
+
         <h3> 登录 </h3>
         <p>
             <label for="username"> 账&nbsp&nbsp&nbsp户 :  </label>
@@ -39,6 +41,8 @@
         <p  id="tips"></p>
 
         <p> 没有账号? 请选择 <a href="index.html"> 注册 </a></p>
+
+        <p> 账号: jokernnk <br> 密码: 114514 </p>
     </div>
 
 <script>
@@ -51,7 +55,7 @@
             document.getElementById("tips").style.color = "red";
             document.getElementById("tips").textContent = "账户或密码不完整(都需6个以上的字符) ! ";
         }
-        else if (password === 114514 && username === "jokernnk"){
+        else if (password === '114514' && username === 'jokernnk'){
             document.getElementById("tips").style.color = "blue";
             document.getElementById("tips").textContent = "登录成功 ! ";
             setInterval(go, 1000);

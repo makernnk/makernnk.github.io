@@ -5,8 +5,7 @@
     <title>登录</title>
     <style>
         div {
-            display:inline-block;
-            padding-top: 160px;
+            padding-top: 50px;
         }
         body {
             background:#008B8B;
@@ -20,6 +19,13 @@
         a{
             text-decoration: none;
             target:"_blank"
+        }
+        img{
+            width: 200px;
+        }
+        p#ps{
+            text-align: left;
+            padding-left: 50px;
         }
     </style>
 </head>
@@ -46,8 +52,11 @@
 
         <p> 没有账号? 请选择 <a href="index.html"> 注册 </a></p>
 
-        <p> 账号: jokernnk <br> 密码: 114514 </p>
     </div>
+    <p> 你也可以选择扫码用手机登录</p>
+    <img src="https://makernnk.github.io/image/erweima.png">
+
+    <p id="ps"> 账号: jokernnk <br> 密码: 114514 </p>
 
 <script>
     document.getElementById("login").onclick = function (){

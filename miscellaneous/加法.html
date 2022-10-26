@@ -10,37 +10,92 @@
         input{
             font-size: 1em;
         }
-        input[button]{
-            margin-right: 1em;
-        }
     </style>
 </head>
 <body>
 <h1 id="h1">oh year</h1>
     <div id="question">
-        <input id="addNum1", type="text", value="0">
+        <input id="addNum1" type="text">
         <span id="add">+</span>
-        <input id="addNum2", type="text", value="0">
-        <span id="addd">=</span>
-        <input id="sum", type="text", value="" , readonly>
+        <input id="addNum2" type="text">
+        <span id="equal">=</span>
+        <input id="sum" type="text" readonly>
     </div>
+    <br><br>
+
+    <div>
+    <input id="addNum3" type="text">
+    <span id="add2">+</span>
+    <input id="addNum4" type="text">
+    <input id="zero" type="button" value="开始/重置">
+    </div>
+
     <div id = 'answer'>
-        A. <input type="button" value="20" id = "answerA">
-        B. <input type="button" value="21" id = "answerB">
-        C. <input type="button" value="22" id = "answerC">
-        D. <input type="button" value="23" id = "answerD">
+        A. <input type="button" id = "answerA">
+        B. <input type="button" id = "answerB">
+        C. <input type="button" id = "answerC">
+        D. <input type="button" id = "answerD">
     </div>
+    <p id="tips"></p>
+
     <script>
-        document.querySelector("input#answerA").value = Math.floor(Math.random() * 20);
-        document.querySelector("input#answerB").value = Math.floor(Math.random() * 20);
-        document.querySelector("input#answerC").value = Math.floor(Math.random() * 20);
-        document.querySelector("input#answerD").value = Math.floor(Math.random() * 20);
-        function addsum(){
-            var num1 = document.querySelector("input#addNum1").value;
-            var num2 = document.querySelector("input#addNum2").value;
-            document.querySelector("input#sum").value = (parseInt(num1)+parseInt(num2));
+        document.getElementById("zero").onclick = function (){
+            document.getElementById("addNum3").value = Math.floor(Math.random() * 20);
+            document.getElementById("addNum4").value = Math.floor(Math.random() * 20);
+            ran();
         }
+
+
+        var reg = /^[0-9]+$/;
         setInterval(addsum,500);
+        function addsum(){
+            var num1 = document.getElementById("addNum1").value;
+            var num2 = document.getElementById("addNum2").value;
+            if (!reg.test(num1) || !reg.test(num2)){
+                document.querySelector("input#sum").value = num1+num2;
+            }else {
+                document.querySelector("input#sum").value = parseInt(num1)+parseInt(num2);
+            }
+        }
+
+
+        var answer = document.querySelectorAll("div#answer input");
+        function ran(){
+            var i = 0;
+            var flag = 0;
+            var num1 = document.getElementById("addNum3").value;
+            var num2 = document.getElementById("addNum4").value;
+            while (i<4){
+                answer[i].value = Math.floor(Math.random() * 20);
+                for (var j = i-1; j >= 0; j--) {
+                    if (parseInt(answer[i].value) === parseInt(num1) + parseInt(num2)){
+                        flag = 1
+                        break;
+                    }
+                    if(answer[i].value===answer[j].value) {
+                        flag = 1;
+                        break;
+                    }
+                }
+                if (flag === 0) {
+                    i++;
+                }
+                flag = 0;
+            }
+            var ran = Math.floor(Math.random() * 4);
+            answer[ran].value = parseInt(num1) + parseInt(num2);
+            for (let k = 0; k < 4; k++) {
+                answer[k].onclick = function (){
+                    if (parseInt(answer[k].value) === parseInt(num1) + parseInt(num2)){
+                        document.getElementById("tips").style.color = "blue";
+                        document.getElementById("tips").textContent = "你答对了 ! ";
+                    }else {
+                        document.getElementById("tips").style.color = "red";
+                        document.getElementById("tips").textContent = "你答错了 ! ";
+                    }
+                }
+            }
+        }
     </script>
 </body>
 </html>

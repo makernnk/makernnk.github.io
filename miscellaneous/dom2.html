@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>dom2</title>
+    <style>
+        body {
+            margin: 0;
+            cursor: pointer;
+        }
+
+        div {
+            background-color: rgba(100, 100, 100, 0.1);
+            box-sizing: border-box;
+            border: 1px solid rgb(100, 100, 200);
+            border-radius: 50%;
+            margin: 0;
+            padding: 0;
+            position: absolute;
+            transition: all 0.5s;
+
+        }
+
+        div.bd {
+            background-color: rgba(0, 100, 100, 0.05);
+            border: 0 solid;
+            border-radius: 0;
+        }
+
+        div p {
+            margin: auto;
+            padding: 10%;
+            color: rgb(0, 200, 0);
+            text-align: center;
+            text-shadow: 1px 1px rgb(0, 100, 100);
+        }
+    </style>
+</head>
+<body>
+<script>
+    let sn = 0;
+    let allBall = [];
+    const S = ['海内存知己，天涯若比邻。', '离离原上草，一岁一枯荣。'];
+    const NUMS = 6;
+    // 单击事件
+    document.body.onclick = function () {
+        for (let ball of allBall) {
+            ball.randPositionDiv();
+        }
+    }
+    // 移动事件
+    document.body.onmousemove = document.body.ontouchmove = function () {
+        for (let ball of allBall) {
+            ball.setPositionDiv();
+        }
+    }
+    // 双击事件
+    document.body.ondblclick = function () {
+        for (let ball of allBall) {
+            this.removeChild(ball.dom);
+        }
+        allBall = [];
+        sn === S.length - 1 ? sn = 0 : sn++;
+        for (let i = 0; i < S[sn].length; i++) {
+            let x = i % NUMS;
+            let y = Math.floor(i / NUMS);
+            let ball = new Ball(x, y);
+            ball.createDivDom(S[sn][i]);
+            ball.randPositionDiv();
+            allBall.push(ball);
+        }
+    }
+
+    let bodyWidth = window.innerWidth;
+    let bodyHeight = window.innerHeight;
+    document.body.style.width = bodyWidth + 'px';
+    document.body.style.height = bodyHeight + 'px';
+    for (let i = 0; i < S[sn].length; i++) {
+        let x = i % NUMS;
+        let y = Math.floor(i / NUMS);
+        let ball = new Ball(x, y);
+        ball.createDivDom(S[sn][i]);
+        ball.randPositionDiv();
+        allBall.push(ball);
+    }
+
+    function Ball(x, y) {
+        this.x = x;
+        this.y = y;
+        this.dom = null;
+        this.createDivDom = function (s) {
+            let div = document.createElement('div');
+            let p = document.createElement('p');
+            p.textContent = s;
+            p.style.fontSize = 25 + 'px';
+            div.style.width = div.style.height = 50 + 'px';
+            if (this.x === 5) {
+                div.className = 'bd';
+            }
+            div.appendChild(p);
+            document.body.appendChild(div);
+            this.dom = div;
+        };
+        this.randPositionDiv = function () {
+            let x = Math.floor(Math.random() * bodyWidth);
+            if (x > bodyWidth/1.1){
+                x = x - bodyWidth/1.1;
+            }
+            let y = Math.floor(Math.random() * bodyHeight);
+            if (y > bodyHeight/1.1){
+                y = y - bodyHeight/1.1;
+            }
+            this.dom.style.left = x + "px";
+            this.dom.style.top = y + "px";
+        }
+        this.setPositionDiv = function () {
+            let x = parseInt(this.x) * 80;
+            let y = parseInt(this.y) * 80;
+            this.dom.style.left = x + 50 + 'px';
+            this.dom.style.top = y + 50 + 'px';
+        }
+    }
+</script>
+</body>
+</html>
